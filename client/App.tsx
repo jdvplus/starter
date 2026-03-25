@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Moon, Sun } from 'lucide-react'
 
 export default function App() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(false)
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-  }, [dark]);
+    document.documentElement.classList.toggle('dark', dark)
+  }, [dark])
 
   return (
     <div className="mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center gap-6 px-4">
@@ -23,10 +23,10 @@ export default function App() {
         </Button>
       </div>
       <p className="text-muted-foreground text-center">
-        Vite + React + TypeScript + Tailwind + Express. Edit{" "}
+        Vite + React + TypeScript + Tailwind + Express. Edit{' '}
         <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">
           client/App.tsx
-        </code>{" "}
+        </code>{' '}
         to get started.
       </p>
       <div className="flex gap-3">
@@ -35,5 +35,5 @@ export default function App() {
         <Button variant="outline">Outline</Button>
       </div>
     </div>
-  );
+  )
 }
