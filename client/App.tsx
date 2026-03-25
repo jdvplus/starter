@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
-
 export default function App() {
   const [dark, setDark] = useState(false)
 
@@ -15,14 +13,13 @@ export default function App() {
       <div className="flex flex-col items-center gap-3">
         <h1 className="text-4xl font-bold tracking-tight">Starter</h1>
 
-        <Button
-          variant="ghost"
-          size="icon"
+        <button
           onClick={() => setDark(!dark)}
           aria-label="Toggle dark mode"
+          className="rounded-md p-2 transition-colors hover:bg-accent"
         >
           {dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-        </Button>
+        </button>
       </div>
 
       <p className="text-muted-foreground text-center">
@@ -31,17 +28,11 @@ export default function App() {
 
       <p className="text-muted-foreground text-center">
         Edit{' '}
-        <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono font-bold">
+        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm font-bold">
           client/App.tsx
         </code>{' '}
         to get started.
       </p>
-
-      <div className="mt-4 flex gap-3">
-        <Button>Primary</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="outline">Outline</Button>
-      </div>
     </div>
   )
 }

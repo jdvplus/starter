@@ -17,9 +17,8 @@ A production-grade full-stack starter template built for speed, durability, and 
 ```
 starter/
 ├── client/                     # React frontend
-│   ├── components/ui/          # Reusable UI components (shadcn/ui)
 │   ├── hooks/                  # Custom hooks (TanStack Query patterns)
-│   ├── lib/                    # Utilities and API client
+│   ├── lib/                    # API client
 │   ├── providers/              # React context providers
 │   ├── test/                   # Test setup
 │   ├── App.tsx                 # Root component
@@ -115,13 +114,10 @@ const { data, isLoading, error } = useHealth()
 
 Create a hook per resource, call `api` methods inside `queryFn`, and the component gets loading/error states for free.
 
-**UI Components** — [shadcn/ui](https://ui.shadcn.com) setup with Tailwind CSS 4, class-variance-authority for variants, and a `cn()` utility for class merging. Add more components with `npx shadcn@latest add <component>`.
-
 ### Testing
 
-**Vitest + Testing Library** — Tests live next to the code they test (`*.test.ts` / `*.test.tsx`). Two patterns established:
+**Vitest + Testing Library** — Tests live next to the code they test (`*.test.ts` / `*.test.tsx`). Pattern established:
 
-- Component tests — render, query the DOM, assert (`button.test.tsx`)
 - Logic tests — mock `fetch`, call functions, assert behavior (`api.test.ts`)
 
 ### Code Quality
