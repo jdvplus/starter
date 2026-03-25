@@ -117,6 +117,8 @@ Create a hook per resource, call `api` methods inside `queryFn`, and the compone
 
 **UI Components** — [shadcn/ui](https://ui.shadcn.com) setup with Tailwind CSS 4, class-variance-authority for variants, and a `cn()` utility for class merging. Add more components with `npx shadcn@latest add <component>`.
 
+> **Prefer plain Tailwind without shadcn/ui?** Check out the [`no-shadcn`](../../tree/no-shadcn) branch — same starter with the component library, `cn()` utility, and related dependencies stripped out.
+
 ### Testing
 
 **Vitest + Testing Library** — Tests live next to the code they test (`*.test.ts` / `*.test.tsx`). Two patterns established:
