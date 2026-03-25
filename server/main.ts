@@ -2,9 +2,9 @@ import "dotenv/config";
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { securityMiddleware } from "./middleware/security.js";
-import { notFoundHandler, errorHandler } from "./middleware/errors.js";
-import api from "./api/index.js";
+import { securityMiddleware } from "./middleware/security.ts";
+import { notFoundHandler, errorHandler } from "./middleware/errors.ts";
+import api from "./api/index.ts";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
