@@ -17,10 +17,6 @@ export function securityMiddleware(): Router {
 
   router.use(cors({ origin, credentials: true }));
 
-  // Body parsing with size limits
-  router.use(express.json({ limit: "1mb" }));
-  router.use(express.urlencoded({ extended: false, limit: "1mb" }));
-
   // Rate limiting on API routes
   router.use(
     "/api",

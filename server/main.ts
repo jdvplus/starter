@@ -14,6 +14,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Security middleware
 app.use(securityMiddleware());
 
+// Body parsing
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 // API routes
 app.use("/api", api);
 
