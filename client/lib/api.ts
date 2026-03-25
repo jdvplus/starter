@@ -13,6 +13,7 @@ export class ApiError extends Error {
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
     let body: Record<string, string> = {}
+
     try {
       body = await response.json()
     } catch {
@@ -30,10 +31,10 @@ async function handleResponse<T>(response: Response): Promise<T> {
 }
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
-  const { headers: customHeaders, ...rest } = options || {}
+  const { headers: customHeaders, ...customOptions } = options || {}
 
   const response = await fetch(url, {
-    ...rest,
+    ...customOptions,
     headers: { 'Content-Type': 'application/json', ...customHeaders },
   })
 
