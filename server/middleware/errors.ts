@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from 'express'
+
 import { AppError } from '../lib/errors.ts'
 import { logger } from '../lib/logger.ts'
 
@@ -6,7 +7,7 @@ export function notFoundHandler(_req: Request, res: Response) {
   res.status(404).json({ error: 'Not found' })
 }
 
-export function errorHandler(
+export function globalErrorHandler(
   err: Error,
   _req: Request,
   res: Response,

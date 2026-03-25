@@ -1,12 +1,12 @@
 import helmet from 'helmet'
 import cors from 'cors'
 import rateLimit from 'express-rate-limit'
-import express, { type Router } from 'express'
+import { Router, type Router as RouterType } from 'express'
 
-export function securityMiddleware(): Router {
-  const router = express.Router()
+export function securityMiddleware(): RouterType {
+  const router = Router()
 
-  // Security headers
+  // Set security response headers with Helmet
   router.use(helmet())
 
   // CORS — allow Vite dev server in development, same-origin in production
@@ -17,7 +17,7 @@ export function securityMiddleware(): Router {
 
   router.use(cors({ origin, credentials: true }))
 
-  // Rate limiting on API routes
+  // Implement rate limiting on API routes
   router.use(
     '/api',
     rateLimit({
@@ -25,7 +25,7 @@ export function securityMiddleware(): Router {
       limit: 100,
       standardHeaders: 'draft-7',
       legacyHeaders: false,
-      message: { error: 'Too many requests, please try again later.' },
+      message: { error: 'Too many requests. Please try again later.' },
     })
   )
 

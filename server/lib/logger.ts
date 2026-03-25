@@ -6,7 +6,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 const logLevel = process.env.LOG_LEVEL || (isProduction ? 'info' : 'debug')
 
 const logFormat = printf(({ level, message, timestamp }) => {
-  return `${timestamp} ${level}: ${message}`
+  return `[${timestamp}] ${level}: ${message}`
 })
 
 export const logger = winston.createLogger({
@@ -20,6 +20,7 @@ export const logger = winston.createLogger({
         logFormat
       ),
     }),
+
     // Add file or cloud transports here for production
     // new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
     // new winston.transports.File({ filename: 'logs/combined.log' }),

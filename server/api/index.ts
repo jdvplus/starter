@@ -1,4 +1,5 @@
 import { Router } from 'express'
+
 import { ENDPOINTS } from '../constants/endpoints.ts'
 import { getHealthStatus } from '../services/health.ts'
 

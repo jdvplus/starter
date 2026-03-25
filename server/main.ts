@@ -2,16 +2,15 @@ import 'dotenv/config'
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { logger } from './lib/logger.ts'
+
+import api from './api/index.ts'
 import { securityMiddleware } from './middleware/security.ts'
 import { httpSuccessLogger, httpErrorLogger } from './middleware/httpLogger.ts'
-import { notFoundHandler, errorHandler } from './middleware/errors.ts'
-import api from './api/index.ts'
+import { notFoundHandler, globalErrorHandler } from './middleware/errors.ts'
+import { logger } from './lib/logger.ts'
 
 const app = express()
 const PORT = process.env.PORT || 3000
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Security middleware
 app.use(securityMiddleware())
@@ -28,6 +27,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/api', api)
 
 // Serve built client in production
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 if (process.env.NODE_ENV === 'production') {
   const distPath = path.resolve(__dirname, '../dist')
   app.use(express.static(distPath))
@@ -38,7 +38,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Error handling
 app.use('/api/{*splat}', notFoundHandler)
-app.use(errorHandler)
+app.use(globalErrorHandler)
 
 const server = app.listen(PORT, () => {
   logger.info(`Server running on http://localhost:${PORT}`)
