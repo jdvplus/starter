@@ -4,8 +4,5 @@ dist
 *.local
 .DS_Store
 
-# TypeScript build output
+# TypeScript build info
 *.tsbuildinfo
-client/**/*.js
-server/**/*.js
-vite.config.js
