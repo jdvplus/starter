@@ -1,13 +1,15 @@
-import { Router } from "express";
+import { Router } from 'express'
+import { ENDPOINTS } from '../constants/endpoints.ts'
+import { getHealthStatus } from '../services/health.ts'
 
-const api = Router();
+const api = Router()
 
-api.get("/health", (_req, res) => {
-  res.json({ status: "ok", timestamp: new Date().toISOString() });
-});
+api.get(ENDPOINTS.HEALTH, (_req, res) => {
+  res.json(getHealthStatus())
+})
 
 // Add your API routes here
-// api.use("/users", usersRouter);
-// api.use("/posts", postsRouter);
+// api.use(ENDPOINTS.USERS, usersRouter)
+// api.use(ENDPOINTS.POSTS, postsRouter)
 
-export default api;
+export default api
