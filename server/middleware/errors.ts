@@ -22,11 +22,9 @@ export function errorHandler(
   }
 
   // Express/library errors that carry a status (e.g. JSON parse failures)
+  const errWithStatus = err as Error & { status?: number }
   const status =
-    'status' in err &&
-    typeof (err as Record<string, unknown>).status === 'number'
-      ? ((err as Record<string, unknown>).status as number)
-      : 500
+    typeof errWithStatus.status === 'number' ? errWithStatus.status : 500
 
   if (status < 500) {
     res.status(status).json({ error: err.message })

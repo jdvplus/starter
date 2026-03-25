@@ -19,27 +19,46 @@ async function handleResponse<T>(response: Response): Promise<T> {
       body.code
     )
   }
+
   return response.json()
 }
 
-function request<T>(url: string, options?: RequestInit): Promise<T> {
-  return fetch(url, {
+async function request<T>(url: string, options?: RequestInit): Promise<T> {
+  const response = await fetch(url, {
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     ...options,
-  }).then(handleResponse<T>)
+  })
+
+  return handleResponse<T>(response)
 }
 
 export const api = {
-  get: <T>(url: string) => request<T>(url),
+  async get<T>(url: string) {
+    return request<T>(url)
+  },
 
-  post: <T>(url: string, body?: unknown) =>
-    request<T>(url, { method: 'POST', body: JSON.stringify(body) }),
+  async post<T>(url: string, body?: unknown) {
+    return request<T>(url, {
+      method: 'POST',
+      body: JSON.stringify(body),
+    })
+  },
 
-  put: <T>(url: string, body?: unknown) =>
-    request<T>(url, { method: 'PUT', body: JSON.stringify(body) }),
+  async put<T>(url: string, body?: unknown) {
+    return request<T>(url, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+    })
+  },
 
-  patch: <T>(url: string, body?: unknown) =>
-    request<T>(url, { method: 'PATCH', body: JSON.stringify(body) }),
+  async patch<T>(url: string, body?: unknown) {
+    return request<T>(url, {
+      method: 'PATCH',
+      body: JSON.stringify(body),
+    })
+  },
 
-  delete: <T>(url: string) => request<T>(url, { method: 'DELETE' }),
+  async delete<T>(url: string) {
+    return request<T>(url, { method: 'DELETE' })
+  },
 }

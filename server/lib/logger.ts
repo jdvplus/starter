@@ -2,14 +2,15 @@ import winston from 'winston'
 
 const { combine, timestamp, printf, colorize } = winston.format
 
+const isProduction = process.env.NODE_ENV === 'production'
+const logLevel = process.env.LOG_LEVEL || (isProduction ? 'info' : 'debug')
+
 const logFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} ${level}: ${message}`
 })
 
 export const logger = winston.createLogger({
-  level:
-    process.env.LOG_LEVEL ||
-    (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
+  level: logLevel,
   format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), logFormat),
   transports: [
     new winston.transports.Console({
