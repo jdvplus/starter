@@ -7,7 +7,7 @@ A production-grade full-stack starter template built for speed, durability, and 
 | Layer        | Technology                                             |
 | ------------ | ------------------------------------------------------ |
 | Client       | React 19, TypeScript 6, Tailwind CSS 4, TanStack Query |
-| Server       | Express 5, Winston, Morgan                             |
+| Server       | Node.js, Express 5, Winston, Morgan                    |
 | Build        | Vite 8, SWC                                            |
 | Testing      | Vitest, Testing Library                                |
 | Code Quality | Prettier, Husky, lint-staged                           |
@@ -52,7 +52,9 @@ cp .env.example .env
 pnpm dev
 ```
 
-The client runs on `http://localhost:5173` with hot reload. The server runs on `http://localhost:3000` with file watching. API requests from the client are proxied to the server automatically.
+The client runs on `http://localhost:5173` with hot reload.
+
+The server runs on `http://localhost:3000` with file watching. API requests from the client are proxied to the server automatically.
 
 ## Scripts
 
