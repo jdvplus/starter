@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from 'express'
 import { AppError } from '../lib/errors.ts'
+import { logger } from '../lib/logger.ts'
 
 export function notFoundHandler(_req: Request, res: Response) {
   res.status(404).json({ error: 'Not found' })
@@ -33,7 +34,7 @@ export function errorHandler(
   }
 
   // Unexpected errors — log and hide details in production
-  console.error(err.stack)
+  logger.error(err.stack || err.message)
 
   const message =
     process.env.NODE_ENV === 'production'
