@@ -12,7 +12,13 @@ export class ApiError extends Error {
 
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
-    const body = await response.json().catch(() => ({}))
+    let body: Record<string, string> = {}
+    try {
+      body = await response.json()
+    } catch {
+      // Response body isn't valid JSON — fall back to empty object
+    }
+
     throw new ApiError(
       response.status,
       body.error || response.statusText,
@@ -24,9 +30,11 @@ async function handleResponse<T>(response: Response): Promise<T> {
 }
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
+  const { headers: customHeaders, ...rest } = options || {}
+
   const response = await fetch(url, {
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    ...options,
+    ...rest,
+    headers: { 'Content-Type': 'application/json', ...customHeaders },
   })
 
   return handleResponse<T>(response)
