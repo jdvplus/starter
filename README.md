@@ -10,7 +10,7 @@ A production-grade full-stack starter template built for speed, durability, and 
 | Server       | Node.js, Express 5, Winston, Morgan                    |
 | Build        | Vite 8, SWC                                            |
 | Testing      | Vitest, Testing Library                                |
-| Code Quality | Prettier, Husky, lint-staged                           |
+| Code Quality | ESLint, Prettier, Husky, lint-staged                   |
 
 ## Project Structure
 
@@ -68,6 +68,8 @@ The server runs on `http://localhost:3000` with file watching. API requests from
 | `pnpm preview`      | Build and start production locally  |
 | `pnpm test`         | Run all tests                       |
 | `pnpm test:watch`   | Run tests in watch mode             |
+| `pnpm lint`         | Lint all files with ESLint          |
+| `pnpm lint:fix`     | Lint and auto-fix issues            |
 | `pnpm format`       | Format all files with Prettier      |
 | `pnpm format:check` | Check formatting without writing    |
 
@@ -128,7 +130,11 @@ Create a hook per resource, call `api` methods inside `queryFn`, and the compone
 
 ### Code Quality
 
+**ESLint** catches bugs and enforces best practices — TypeScript-aware rules, React hooks validation, and Vite HMR safety checks. Uses ESLint 9's flat config (`eslint.config.js`) with `typescript-eslint`, `eslint-plugin-react-hooks`, and `eslint-plugin-react-refresh`. Formatting rules are disabled via `eslint-config-prettier` so ESLint and Prettier never conflict.
+
 **Prettier** runs on every commit via Husky + lint-staged. No style debates, no formatting drift. Configuration matches production conventions (no semicolons, single quotes, trailing commas).
+
+Both run automatically on pre-commit via lint-staged — ESLint auto-fixes first, then Prettier formats.
 
 ## Environment Variables
 
