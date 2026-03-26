@@ -4,7 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import prettier from 'eslint-config-prettier'
 
-export default tseslint.config(
+export default [
   { ignores: ['dist'] },
 
   // Base JS recommended rules
@@ -41,5 +41,5 @@ export default tseslint.config(
   },
 
   // Disable formatting rules that conflict with Prettier
-  prettier
-)
+  prettier,
+]
